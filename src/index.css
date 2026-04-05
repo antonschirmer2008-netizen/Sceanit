@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  
+  --color-primary: #f4f4f5;
+  --color-secondary: #a1a1aa;
+  --color-tertiary: #3f3f46;
+  --color-neutral-bg: #09090b;
+  --color-gold: #ffd700;
+}
+
+@layer utilities {
+  .fill-gold-shimmer {
+    fill: #ffd700;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+  }
+  .text-gold-shimmer {
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+  }
+  .bg-gold-shimmer {
+    background: linear-gradient(
+      135deg,
+      #b8860b 0%,
+      #ffd700 50%,
+      #b8860b 100%
+    );
+    background-size: 200% 200%;
+    animation: bg-shimmer 4s ease infinite;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-neutral-bg text-neutral-100 font-sans overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+}
+
+.glass {
+  @apply bg-white/[0.02] backdrop-blur-2xl border border-white/5 shadow-[0_8px_32px_0_rgba(0,0,0,0.8)];
+}
+
+.glass-dark {
+  @apply bg-black/40 backdrop-blur-2xl border border-white/5 shadow-2xl;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+}
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.shimmer-gold {
+  background: linear-gradient(
+    90deg,
+    #b8860b 0%,
+    #fcc200 25%,
+    #ffd700 50%,
+    #fcc200 75%,
+    #b8860b 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 4s linear infinite;
+  display: inline-block;
+}
+
+.bg-gold-shimmer {
+  background: linear-gradient(
+    135deg,
+    #b8860b 0%,
+    #ffd700 50%,
+    #b8860b 100%
+  );
+  background-size: 200% 200%;
+  animation: bg-shimmer 4s ease infinite;
+}
+
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+
+@keyframes bg-shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.border-gold {
+  border-color: #ffd700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.bg-mesh {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: 
+    radial-gradient(circle at 0% 0%, rgba(161, 161, 170, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(63, 63, 70, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(244, 244, 245, 0.02) 0%, transparent 50%);
+  filter: blur(100px);
+  animation: mesh-float 20s ease-in-out infinite alternate;
+}
+
+@keyframes mesh-float {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.1) translate(2%, 2%); }
+}
